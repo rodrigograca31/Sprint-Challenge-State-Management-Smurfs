@@ -83,3 +83,17 @@ server.listen(port, err => {
 	if (err) console.log(err);
 	console.log(`server is listening on port ${port}`);
 });
+
+// http://localhost:3333/smurfs/0
+server.get("/smurfs/:id", (req, res) => {
+	const { id } = req.params;
+	const findSmurfById = smurf => {
+		return smurf.id == id;
+	};
+	const foundSmurf = smurfs.find(findSmurfById);
+	if (!foundSmurf) {
+		return sendUserError("No Smurf found by that ID", res);
+	} else {
+		res.json(smurfs);
+	}
+});
