@@ -87,10 +87,7 @@ server.listen(port, err => {
 // http://localhost:3333/smurfs/0
 server.get("/smurfs/:id", (req, res) => {
 	const { id } = req.params;
-	const findSmurfById = smurf => {
-		return smurf.id == id;
-	};
-	const foundSmurf = smurfs.find(findSmurfById);
+	const foundSmurf = smurfs.find(smurf => smurf.id == id);
 	if (!foundSmurf) {
 		return sendUserError("No Smurf found by that ID", res);
 	} else {
