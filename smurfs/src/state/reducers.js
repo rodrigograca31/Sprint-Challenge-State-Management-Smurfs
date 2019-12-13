@@ -22,6 +22,8 @@ export function smurfsReducer(smurfs = initialState.smurfs, action) {
 	switch (action.type) {
 		case types.SET_SMURFS:
 			return action.payload.smurfs;
+		case types.SAVE_FORM:
+			return smurfs;
 		default:
 			return smurfs;
 	}
@@ -29,9 +31,16 @@ export function smurfsReducer(smurfs = initialState.smurfs, action) {
 
 // STEP 3: create reducers
 export function formReducer(form = initialState.form, action) {
-	switch (action.types) {
+	switch (action.type) {
 		case types.UPDATE_FORM:
-			return form;
+			console.log(action.payload);
+
+			return {
+				...form,
+				[action.payload.name]: action.payload.value
+			};
+		case types.SAVE_FORM:
+			return initialState.form;
 		default:
 			return form;
 	}
