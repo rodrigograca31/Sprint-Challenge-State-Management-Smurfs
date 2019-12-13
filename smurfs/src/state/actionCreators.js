@@ -33,25 +33,57 @@ export const updateForm = ({ name, value }) => {
 export const saveForm = form => dispatch => {
 	console.log(form);
 
-	axios
-		.post("http://localhost:3333/smurfs", form)
-		.then(response => {
-			console.log(response);
+	// if an id exists its editing, else its creating
+	if (form.id !== undefined) {
+		axios
+			.put("http://localhost:3333/smurfs/" + form.id, form)
+			.then(response => {
+				console.log(response);
+				dispatch({
+					type: types.SAVE_FORM,
+					payload: {
+						form
+					}
+				});
+				dispatch({
+					type: types.SET_SMURFS,
+					payload: {
+						smurfs: response.data
+					}
+				});
+			})
+			.catch();
+	} else {
+		axios
+			.post("http://localhost:3333/smurfs", form)
+			.then(response => {
+				console.log(response);
+				dispatch({
+					type: types.SAVE_FORM,
+					payload: {
+						form
+					}
+				});
+				dispatch({
+					type: types.SET_SMURFS,
+					payload: {
+						smurfs: response.data
+					}
+				});
+			})
+			.catch();
+	}
+};
 
-			dispatch({
-				type: types.SAVE_FORM,
-				payload: {
-					form
-				}
-			});
-			dispatch({
-				type: types.SET_SMURFS,
-				payload: {
-					smurfs: response.data
-				}
-			});
-		})
-		.catch();
+export const editSmurf = smurf => {
+	console.log("edit action");
+
+	return {
+		type: types.EDIT_SMURF,
+		payload: {
+			smurf
+		}
+	};
 };
 
 // Step 7: Design action creator functions

@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 
 import { updateForm, saveForm } from "../state/actionCreators";
 
-export const AddSmurf = ({ form, updateForm, saveForm }) => {
+export const AddSmurf = ({ form, updateForm, saveForm, clearForm }) => {
 	const formSubmit = e => {
 		e.preventDefault();
+
+		// should check if an id exists here and call updateSmurf()
 		saveForm(form);
 	};
 
@@ -15,8 +17,10 @@ export const AddSmurf = ({ form, updateForm, saveForm }) => {
 	};
 	return (
 		<div>
-			{JSON.stringify(form)}
 			<h2>Add: </h2>
+			{JSON.stringify(form)}
+			<br />
+			<br />
 			<form action="" onSubmit={e => formSubmit(e)}>
 				<label htmlFor="name">Name: </label>
 				<input
@@ -43,9 +47,12 @@ export const AddSmurf = ({ form, updateForm, saveForm }) => {
 				/>
 				<br />
 				<input type="submit" value="Save" />
+				<input type="button" value="Clear" onClick={e => clearForm} />
 			</form>
 		</div>
 	);
 };
 
-export default connect(state => state, { updateForm, saveForm })(AddSmurf);
+export default connect(state => state, { updateForm, saveForm, clearForm })(
+	AddSmurf
+);

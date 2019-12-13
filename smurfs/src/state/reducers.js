@@ -39,6 +39,8 @@ export function formReducer(form = initialState.form, action) {
 			};
 		case types.SAVE_FORM:
 			return initialState.form;
+		case types.EDIT_SMURF:
+			return action.payload.smurf;
 		default:
 			return form;
 	}

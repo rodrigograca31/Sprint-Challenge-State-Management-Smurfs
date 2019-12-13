@@ -2,14 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 
-import { loadSmurfs, deleteSmurf } from "../state/actionCreators";
+import { loadSmurfs, deleteSmurf, editSmurf } from "../state/actionCreators";
 import AddSmurf from "./AddSmurf";
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		this.props.loadSmurfs();
 	}
@@ -26,10 +22,20 @@ class App extends Component {
 
 				<h2>Smurfs: </h2>
 				{this.props.smurfs.map(smurf => (
-					<div class="smurf">
-						<div onClick={e => this.props.deleteSmurf(smurf)}>
-							x
+					<div className="smurf" key={smurf.id}>
+						<div
+							onClick={e => this.props.deleteSmurf(smurf)}
+							className="btns"
+						>
+							🗑️
 						</div>
+						<div
+							onClick={e => this.props.editSmurf(smurf)}
+							className="btns"
+						>
+							✏️
+						</div>
+						<br />
 						<b>ID:</b> {smurf.id} <br />
 						<b>Name:</b> {smurf.name} <br />
 						<b>Age:</b> {smurf.age} <br />
@@ -42,4 +48,6 @@ class App extends Component {
 }
 
 // export default App;
-export default connect(state => state, { loadSmurfs, deleteSmurf })(App);
+export default connect(state => state, { loadSmurfs, deleteSmurf, editSmurf })(
+	App
+);
