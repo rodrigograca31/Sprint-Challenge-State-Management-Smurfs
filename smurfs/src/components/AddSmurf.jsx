@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { updateForm, saveForm } from "../state/actionCreators";
+import { updateForm, saveForm, clearForm } from "../state/actionCreators";
 
 export const AddSmurf = ({ form, updateForm, saveForm, clearForm }) => {
 	const formSubmit = e => {
@@ -47,7 +47,7 @@ export const AddSmurf = ({ form, updateForm, saveForm, clearForm }) => {
 				/>
 				<br />
 				<input type="submit" value="Save" />
-				<input type="button" value="Clear" onClick={e => clearForm} />
+				<input type="button" value="Clear" onClick={e => clearForm()} />
 			</form>
 		</div>
 	);

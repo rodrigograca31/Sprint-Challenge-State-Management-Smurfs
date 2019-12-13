@@ -105,3 +105,9 @@ export const deleteSmurf = smurf => dispatch => {
 };
 
 export const updateSmurf = smurf => dispatch => {};
+
+export const clearForm = () => {
+	return {
+		type: types.SAVE_FORM
+	};
+};
