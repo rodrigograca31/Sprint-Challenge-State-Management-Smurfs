@@ -21,7 +21,7 @@ const initialState = {
 export function smurfsReducer(smurfs = initialState.smurfs, action) {
 	switch (action.type) {
 		case types.SET_SMURFS:
-			return smurfs;
+			return action.payload.smurfs;
 		default:
 			return smurfs;
 	}
