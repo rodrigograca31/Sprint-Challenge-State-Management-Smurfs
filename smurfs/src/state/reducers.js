@@ -33,8 +33,6 @@ export function smurfsReducer(smurfs = initialState.smurfs, action) {
 export function formReducer(form = initialState.form, action) {
 	switch (action.type) {
 		case types.UPDATE_FORM:
-			console.log(action.payload);
-
 			return {
 				...form,
 				[action.payload.name]: action.payload.value

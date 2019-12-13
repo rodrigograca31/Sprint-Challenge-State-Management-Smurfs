@@ -56,7 +56,20 @@ export const saveForm = form => dispatch => {
 
 // Step 7: Design action creator functions
 export const deleteSmurf = smurf => dispatch => {
-	// return
+	console.log("delete");
+	console.log(smurf.id);
+
+	axios
+		.delete("http://localhost:3333/smurfs/" + smurf.id)
+		.then(response => {
+			dispatch({
+				type: types.SET_SMURFS,
+				payload: {
+					smurfs: response.data
+				}
+			});
+		})
+		.catch();
 };
 
 export const updateSmurf = smurf => dispatch => {};

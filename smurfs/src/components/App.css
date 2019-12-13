@@ -30,3 +30,13 @@
 		transform: rotate(360deg);
 	}
 }
+
+.smurf {
+	border: 2px solid blue;
+	width: 200px;
+	display: inline-block;
+	margin: 0 auto;
+	padding: 10px;
+	background: #62cdfd;
+	margin: 10px;
+}
